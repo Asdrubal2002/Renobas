@@ -1,0 +1,82 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label
+                class="fas fa-arrow-left"></label></a>
+    </div>
+</div>
+<div class="container p-3">
+    <div class="row">
+        {{#each recoleccionAsignada}}
+        <div class="card">
+            <div class="card-body">
+                <div class="container px-3">
+                    <div class="row gx-5">
+                        <div class="col">
+                            <div class="p-3">
+                                <div class="alert alert-warning" role="alert">
+                                    Vas a calificar el servicio de entrega de
+                                    <strong>{{nombreLugarRecoleccion}}</strong> <br> ¿Fue responsable con la
+                                    recolección?
+                                </div>
+                                <p class="card-text">Hora de entrega: <strong>{{horario}}</strong></p>
+                                <p class="card-text">fecha de entrega: <strong>{{fecha}}</strong></p>
+                                <p class="card-text">precio de recolección: <strong>{{precio}}</strong></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <form action="/links/calificacionRecolector/{{id}}" method="POST" class="formStair"
+                                    onsubmit="return validar()">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlTextarea1" class="form-label">¿Tienes comentarios?
+                                                    </label>
+                                                <textarea class="form-control" id="comentario" name="comentario"
+                                                    rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="clasificacion">
+                                                <input id="radio1" type="radio" name="estrellas" value="5">
+                                                <label class="calificacion" for="radio1">★</label>
+                                                <input id="radio2" type="radio" name="estrellas" value="4">
+                                                <label class="calificacion" for="radio2">★</label>
+                                                <input id="radio3" type="radio" name="estrellas" value="3">
+                                                <label class="calificacion" for="radio3">★</label>
+                                                <input id="radio4" type="radio" name="estrellas" value="2">
+                                                <label class="calificacion" for="radio4">★</label>
+                                                <input id="radio5" type="radio" name="estrellas" value="1">
+                                                <label class="calificacion" for="radio5">★</label>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <button type="submit" class="btn btn-secondary">Calificar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<script>
+    function validar() {
+        if (!document.querySelector('input[name="estrellas"]:checked')) {
+            swal.fire({
+                title: "ERROR",
+                text: "Selecciona su  calificación",
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+    }
+</script>

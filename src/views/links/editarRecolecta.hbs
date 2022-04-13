@@ -1,0 +1,199 @@
+<div class="containerBoton">
+  <div class="btn-mas">
+      <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label class="fas fa-arrow-left"></label></a>
+  </div>
+</div>
+<div class="container p-4">
+    <form action="/links/editRecolecta/{{datos.id}}" method="POST" class="row g-3"
+        onsubmit="return editarPerfilRecolector();">
+        <h3>Editar Recolección</h3>
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">¡Atención!</h4>
+            <p>En las siguientes secciones tendras que llenar la información solicitada sobre tu recolección</p>
+            <hr>
+            <p class="mb-0">Gracias por hacer parte de Renobas, le ayudas a tu toda tu comunidad.</p>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Personal encardo de entrega
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container px-4">
+                            <div class="row gx-5">
+                                <div class="col">
+                                    <div class="p-3">
+                                        <div class="col-md-12">
+                                            <label for="validationDefault01" class="form-label">Nombre</label>
+                                            <input type="text" name="nombre" class="form-control" id="nombre"
+                                                value="{{datos.nombre}}">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationDefault02" class="form-label">Telefono</label>
+                                            <input type="text" name="telefono" class="form-control" id="telefono"
+                                                value="{{datos.telefono}}">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="validationDefault02" class="form-label">Fecha 1</label>
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" name="fecha1" id="fecha1"
+                                                    value="{{datos.fecha1}}">
+                                                     <input type="time" class="form-control" name="horario1" id="horario1"
+                                                    value="{{datos.horario1}}">
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="validationDefault02" class="form-label">Fecha 2</label>
+                                            <div class="input-group">
+                                                 <input type="date" class="form-control" name="fecha2" id="fecha2"
+                                                    value="{{datos.fecha2}}">
+                                                <input type="time" class="form-control" name="horario2" id="horario2"
+                                                    value="{{datos.horario2}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col d-none d-md-block">
+                                    <div class="p-3">
+                                        <div class="col-md-12">
+                                            <label for="validationDefault01" class="form-label">Materiales</label>
+                                            <input type="text" name="materiales" class="form-control" id="materiales"
+                                                value="{{datos.materiales}}">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationDefault04" class="form-label">Cantidad</label>
+                                            <select class="form-select" name="cantidad" id="cantidad"
+                                                value="{{datos.cantidad}}">
+                                                <option selected value="{{datos.cantidad}}">
+                                                    {{datos.cantidad}}
+                                                </option>
+                                                <option>Menos de 10 kilos</option>
+                                                <option>Entre 10 y 15 kilos</option>
+                                                <option>Entre 15 y 20 kilos</option>
+                                                <option>Entre 20 y 30 kilos</option>  
+                                                <option>Entre 30 y 40 kilos</option>
+                                                <option>Entre 40 y 50 kilos</option>
+                                                <option>Entre 50 y 60 kilos</option>
+                                                <option>Entre 60 y 70 kilos</option>
+                                                <option>Entre 70 y 80 kilos</option>
+                                                <option>Entre 80 y 90 kilos</option>
+                                                <option>Entre 90 y 100 kilos</option>
+                                                <option>Más de 100 kilos</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="validationDefault04" class="form-label">Estado</label>
+                                            <select class="form-select" name="estado" id="estado"
+                                                value="{{datos.estado}}">
+                                                <option selected value="{{datos.estado}}">{{datos.estado}}</option>
+                                                <option>Mal</option>
+                                                <option>Bueno</option>
+                                                <option>Aporriado</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="validationDefault02" class="form-label">Precio</label>
+                                            <input type="number" name="precio" class="form-control" id="precio"
+                                                value="{{datos.precio}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Descripción de la recolección
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container px-4">
+                            <div class="col-md-12">
+                                <label for="validationDefault04" class="form-label">¿Toxico?</label>
+                                <select class="form-select" name="toxico" id="toxico" value="{{datos.toxico}}">
+                                    <option selected value="{{datos.toxico}}">{{datos.toxico}}</option>
+                                    <option>Si</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault04" class="form-label">¿Clasificado?</label>
+                                <select class="form-select" name="clasificado" id="clasificado"
+                                    value="{{datos.clasificado}}">
+                                    <option selected value="{{datos.limpio}}">{{datos.toxico}}</option>
+                                    <option>Si</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault04" class="form-label">¿Limpio?</label>
+                                <select class="form-select" name="limpio" id="limpio" value="{{datos.limpio}}">
+                                    <option selected value="{{datos.limpio}}">{{datos.limpio}}</option>
+                                    <option>Si</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Actualizar recolección</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function editarPerfilRecolector() {
+        var nombre, telefono, fecha1, fecha2, horario1, horario2, materiales, cantidad, estado, precio, toxico, clasificado, limpio;
+        nombre = document.getElementById("nombre").value;
+        telefono = document.getElementById("telefono").value;
+        fecha1 = document.getElementById("fecha1").value;
+        fecha2 = document.getElementById("fecha2").value;
+        horario1 = document.getElementById("horario1").value;
+        horario2 = document.getElementById("horario2").value;
+        materiales = document.getElementById("materiales").value;
+        cantidad = document.getElementById("cantidad").value;
+        estado = document.getElementById("estado").value;
+        precio = document.getElementById("precio").value;
+        toxico = document.getElementById("toxico").value;
+        clasificado = document.getElementById("clasificado").value;
+        limpio = document.getElementById("limpio").value;
+
+        if (nombre === "" || telefono === "" || horario1 === "" || horario2 === "" || materiales === "" ||
+            cantidad === "" || estado === "" || precio === "" || toxico === "" || clasificado === "" || limpio === "") {
+            swal.fire({
+                title: "Edición errónea",
+                text: "Todos los campos son obligatorios",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        } else if (fecha1 === "" || fecha2 === "") {
+            swal.fire({
+                title: "Edición errónea",
+                text: "Vuelve a elegir tu fecha de posible recolección",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        } 
+    }
+</script>

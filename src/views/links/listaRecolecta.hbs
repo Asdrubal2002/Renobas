@@ -1,0 +1,74 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaRecolectores">Id Recolector</a></th>
+                    <th>nombre Encargado</th>
+                    <th>telefono</th>
+                    <th>fecha1</th>
+                    <th>horario1</th>
+                    <th>fecha2</th>
+                    <th>horario2</th>
+                    <th>materiales</th>
+                    <th>cantidad</th>
+                    <th>estado</th>
+                    <th>precio</th>
+                    <th>toxico</th>
+                    <th>clasificado</th>
+                    <th>limpio</th>
+                    <th>Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each recolectas}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{idRecolector}}</td>
+                    <td>{{nombre}}</td>
+                    <td>{{telefono}}</td>
+                    <td>{{fecha1}}</td>
+                    <td>{{horario1}}</td>
+                    <td>{{fecha2}}</td>
+                    <td>{{horario2}}</td>
+                    <td>{{materiales}}</td>
+                    <td>{{cantidad}}</td>
+                    <td>{{estado}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{toxico}}</td>
+                    <td>{{clasificado}}</td>
+                    <td>{{limpio}}</td>
+                    <td>
+                        <form action="/links/deleteRecolecta/{{id}}" class="ActionForm">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {{else}}
+                <h4>No hay Usuarios registrados</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres Eliminar esta recolecta",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

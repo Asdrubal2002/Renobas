@@ -1,0 +1,91 @@
+<div class="m-3 p-2">
+
+
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaUsers">Id Usuario</a></th>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>identificación</th>
+                    <th>nivel</th>
+                    <th>Gestión</th>
+                    <th>Niveles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each administradores}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{idUser}}</td>
+                    <td>{{nombre}}</td>
+                    <td>{{apellido}}</td>
+                    <td>{{identificacion}}</td>
+                    <td>{{nivel}}</td>
+                    <td>
+                        <form action="/links/deleteAdmin/{{id}}" class="ActionForm">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/links/editLevel/{{id}}" method="POST" class="ActionFormEdit">
+                            <div class="input-group">
+                                <select class="form-select" id="nivel" name="nivel"
+                                    aria-label="Example select with button addon">
+                                    <option selected disabled>niveles...</option>
+                                    <option value="1">Primer nivel</option>
+                                    <option value="0">Segundo nivel</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-pen"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {{else}}
+                <h4>No hay Usuarios registrados</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres Eliminar esta recolecta",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+
+    $('.ActionFormEdit').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres Editar este administrador?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Editar',
+            confirmButtonText: 'Si, Editar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

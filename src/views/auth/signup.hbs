@@ -1,0 +1,62 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <form class="card" action="/signup" method="POST" onsubmit="return empieza();">
+          <img src="/img/logo.png" alt="Logo Fazt" class="card-img-top mx-auto m-1 rounded-circle w-50" />
+        <div class="card-body">
+          <label for="username">Escribe tu usuario:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="johndoe123"
+            class="form-control mb-3"
+          />
+          <label for="password">Escribe tu contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            id="clave"
+            placeholder="clave"
+            class="form-control mb-3"
+          />
+          <label for="fullname">Escribe tu email:</label>
+          <input
+            type="type"
+            name="email"
+            id="email"
+            placeholder="johanDorado@gmail.com"
+            class="form-control mb-3"
+            autofocus
+          />
+          <button class="btn btn-primary btn-block">
+            Registrarse
+          </button>
+        </div>
+      </form>
+
+      {{! Link }}
+      <p class="fs-5 text-center mt-3">¿Ya tienes cuenta?
+        <a href="/signin">Ingresar</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function empieza() {
+    var usuario, clave, correo;
+    usuario = document.getElementById("username").value;
+    clave = document.getElementById("clave").value;
+    email = document.getElementById("email").value;
+    if (usuario === "" || clave === "" || email === "" ) {
+      swal.fire({
+        title: "Registro erróneo",
+        text: "Todos los campos son obligatorios",
+        timer: 3000,
+        showConfirmButton: false
+      });
+      return false;
+    }
+  }
+</script>

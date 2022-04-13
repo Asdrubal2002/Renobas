@@ -1,0 +1,217 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label
+                class="fas fa-arrow-left"></label></a>
+    </div>
+</div>
+<div class="container p-4">
+    <div class="container overflow-hidden">
+        <div class="row gx-1">
+            <div class="col">
+                <input class="datosOcultos" id="estrellas" value={{dato.estrellas}}>
+                <input class="datosOcultos" id="votantes" value={{dato.votantes}}>
+
+                <input class="datosOcultos" id="mult" value=5>
+                <div class="p-3 border bg-light">
+                    <form action="/links/editoPerfil" method="POST" class="row g-3" onsubmit="return editarPerfil();">
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>Puedes</strong> cambiar toda la información si ya no eres la persona encargada de la
+                            gestión de
+                            residuos de la institución o empresa.
+                        </div>
+                        <h4>Información Institucional</h4>
+                        <div class="col-md-4">
+                            <label for="validationDefault01" class="form-label">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" id="nombre" value="{{dato.nombre}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault02" class="form-label">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" id="apellido"
+                                value="{{dato.apellido}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault02" class="form-label">Telefono</label>
+                            <input type="number" name="telefono" class="form-control" id="telefono"
+                                value="{{dato.telefono}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault03" class="form-label">Ciudad</label>
+                            <input type="text" name="ciudad" class="form-control" id="ciudad" readonly
+                                value="{{dato.ciudad}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault03" class="form-label">Identificación</label>
+                            <input type="number" name="identificacion" class="form-control" id="identificacion"
+                                value="{{dato.identificacion}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault03" class="form-label">Edad</label>
+                            <input type="number" name="edad" class="form-control" id="edad" value="{{dato.edad}}">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="validationDefault04" class="form-label">Departamento</label>
+                            <select class="form-select" name="departamento" id="departamento"
+                                value="{{dato.departamento}}">
+                                <option selected value="{{dato.departamento}}">{{dato.departamento}}</option>
+                                <option>Amazonas</option>
+                                <option>Antioquía</option>
+                                <option>Arauca</option>
+                                <option>Atlántico</option>
+                                <option>Bolivar</option>
+                                <option>Boyacá</option>
+                                <option>Caldas</option>
+                                <option>Caquetá</option>
+                                <option>Casanare</option>
+                                <option>Cauca</option>
+                                <option>Cesar</option>
+                                <option>Chocó</option>
+                                <option>Córdoba</option>
+                                <option>Cundinamarca</option>
+                                <option>Guainía</option>
+                                <option>Guaviare</option>
+                                <option>La Guajira</option>
+                                <option>Magdalena</option>
+                                <option>Meta</option>
+                                <option>Nariño</option>
+                                <option>Norte de Santander</option>
+                                <option>Putumayo</option>
+                                <option>Quindio</option>
+                                <option>Risaralda</option>
+                                <option>San Andrés y Providencia</option>
+                                <option>Santander</option>
+                                <option>Sucre</option>
+                                <option>Tolima</option>
+                                <option>Valle del Cauca</option>
+                                <option>Vaupés</option>
+                                <option>Vichada</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12  text-center">
+                            <label for="validationDefault04" class="form-label">Clasificación</label>
+                            <p id="demo" style="color: #ffc107;">Sin clasificación</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="col-md-4">
+                            <label for="validationDefault05" class="form-label">Dirección</label>
+                            <input type="text" name="direccion" class="form-control" id="direccion"
+                                value="{{dato.direccion}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationDefault05" class="form-label">Nombre Lugar</label>
+                            <input type="text" name="nombreLugar" class="form-control" id="nombreLugar"
+                                value="{{dato.nombreLugar}}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationDefault05" class="form-label">Barrio</label>
+                            <input type="text" name="barrio" class="form-control" id="barrio" value="{{dato.barrio}}">
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="test">
+                                <label class="form-check-label" for="invalidCheck2">
+                                    Estoy deacuerdo con el tratamiento de datos.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Actualizar perfil</button>
+                        </div>
+                    </form>
+
+                </div>
+                
+            </div>
+            <div class="col d-none d-md-block">
+                <div class="p-3">
+                    <img src="../img/medellin.jpg" class="d-block w-100" alt="medellin">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = estreella;
+    function editarPerfil() {
+        var nombre, apellido, telefono, ciudad, identificacion, edad, departamento, direccion, nombreLugar, barrio;
+        nombre = document.getElementById("nombre").value;
+        apellido = document.getElementById("apellido").value;
+        telefono = document.getElementById("telefono").value;
+        ciudad = document.getElementById("ciudad").value;
+        identificacion = document.getElementById("identificacion").value;
+        edad = document.getElementById("edad").value;
+        departamento = document.getElementById("departamento").value;
+        direccion = document.getElementById("direccion").value;
+        nombreLugar = document.getElementById("nombreLugar").value;
+
+        barrio = document.getElementById("barrio").value;
+
+        var isChecked = document.getElementById('test').checked;
+
+        if (nombre === "" || apellido === "" || telefono === "" || ciudad === "" || identificacion === "" || edad === "" ||
+            departamento === "" || direccion === "" || nombreLugar === "" || barrio === "") {
+            swal.fire({
+                title: "Creación errónea",
+                text: "Todos los campos son obligatorios",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+        else if (!isChecked) {
+            swal.fire({
+                title: "Error",
+                text: 'No Aceptaste el tratamiento de datos',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (telefono.length > 10 || telefono.length < 10) {
+            swal.fire({
+                title: "Error",
+                text: 'Vuelve a escribir tú número',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if (identificacion.length > 10 || identificacion.length < 10) {
+            swal.fire({
+                title: "Error",
+                text: 'Vuelve a escribir tú documentas',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+    }
+
+    function estreella() {
+
+        var starts = document.getElementById("estrellas").value;
+        var votos = document.getElementById("votantes").value;
+        const sum = parseInt(starts) + parseInt(votos);
+        const prome = parseInt(votos) * 5;
+        const start = (sum * 5) / prome
+        if (start >= 5 || start == 'NaN') {
+            document.getElementById("demo").innerHTML = "★★★★★";
+        }
+        else if (start < 5 && start >= 4) {
+            document.getElementById("demo").innerHTML = "★★★★";
+        }
+        else if (start < 4 && start >= 3) {
+            document.getElementById("demo").innerHTML = "★★★";
+        }
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+        }
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+        }
+    }
+</script>

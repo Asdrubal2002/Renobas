@@ -1,0 +1,25 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label
+                class="fas fa-arrow-left"></label></a>
+    </div>
+</div>
+<div class="container p-3">
+    {{#each comentariosRecolector}}
+    <div class="card text-white bg-secondary">
+        {{!-- <div class="card-header">
+            
+        </div> --}}
+        <div class="card-body">
+            <p class="card-text">{{comentario}}</p>
+        </div>
+    </div>
+    <p></p>
+    {{else}}
+    <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center text-dark">
+            <h3>No hay comentarios</h3>
+        </div>
+    </div>
+    {{/each}}
+</div>

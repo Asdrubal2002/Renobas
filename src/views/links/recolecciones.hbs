@@ -1,0 +1,58 @@
+<div class="containerBoton">
+  <div class="btn-mas">
+    <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label class="fas fa-arrow-left"></label></a>
+  </div>
+</div>
+<div class="container p-4">
+  <div class="row">
+    {{#each recolecta}}
+    <div class="card text-center mb-3">
+      <div class="card-header">
+        <strong>Encargado: </strong>{{nombre}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{materiales}}</h5>
+        <!-- <p class="card-text"></p> -->
+        <form action="/links/deleteRecoleccion/{{id}}" class="ActionForm">
+          <a><button type="submit" class="btn btn-danger">Eliminar</button></a>
+          <a href="/links/solicitudesRequeridas/{{id}}" class="btn btn-warning">Solicitudes</a>
+          <a href="/links/editRecolecta/{{id}}" class="btn btn-primary">Editar</a>
+        </form>
+      </div>
+    </div>
+    {{else}}
+    <div class="col-md-4 mx-auto">
+      <div class="card card-body text-center text-dark">
+        <p>No tienes recolecciones pendientes</p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="col-md-4 mx-auto">
+    <div class="card card-body text-center text-dark">
+      <a href="/links/addRecoleccion"><button type="button" class="btn btn-secondary">Crear Recolección</button></a>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  $('.ActionForm').submit(function (e) {
+    e.preventDefault();
+    Swal.fire({
+      title: '¿Quieres eliminarla?',
+      text: "Se eliminaran todas las solicitudes",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#c51162',
+      cancelButtonText: 'No, Eliminar',
+      confirmButtonText: 'Si, Eliminar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.submit();
+      }
+    })
+  });
+</script>

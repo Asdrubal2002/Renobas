@@ -1,0 +1,36 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaRecolectores">IdRecolector</a></th>
+                    <th>horario</th>
+                    <th>fecha</th>
+                    <th>material</th>
+                    <th>encargado</th>
+                    <th>cantidad</th>
+                    <th>precio</th>
+                    <th>Estrellas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each listaDoneRe}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{identificacion}}</td>
+                    <td>{{horario}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{material}}</td>
+                    <td>{{encargado}}</td>
+                    <td>{{cantidad}}</td>
+                    <td>{{precioRecolector}}</td>
+                    <td>{{estrellas}}<estrella style="color: #ffc107;">★</estrella></td>
+                </tr>
+                {{else}}
+                <h4>No Comentarios Aún</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="containerBoton">
+  <div class="btn-mas">
+      <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label class="fas fa-arrow-left"></label></a>
+  </div>
+</div>
+<input class="datosOcultos" id="fecha1" value="{{recoleccionD.fecha1}}">
+<input class="datosOcultos" id="fecha2" value="{{recoleccionD.fecha2}}">
+<input class="datosOcultos" id="horario1" value="{{recoleccionD.horario1}}">
+<input class="datosOcultos" id="horario2" value="{{recoleccionD.horario2}}">
+<div class="container p-4">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>!ATENCIÓN¡</strong> Podras editar la fecha de la recolección de <strong>{{ recoleccionD.materiales }}</strong>  antes de que te acepten o rechacen tu solicitud.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="border bg-light">
+        <div class="p-4">
+            <form action="/links/editarFecha/{{recoleccionD.id}}" method="POST" class="row g-3"
+                onsubmit="return crearPerfilReciclador();">
+                <div class="col-md-6">
+                    <label for="validationDefault01" class="form-label"><strong>Fecha 1 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.fecha1}}</label>
+                </div>
+                 <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Hora 1 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.horario1}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Fecha 2 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.fecha2}}</label>
+                </div>
+               
+                <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Hora 2 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.horario2}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Cantidad:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.cantidad}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Estado:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.estado}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Precio:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.precio}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Clasificado:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.clasificado}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Toxico:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.toxico}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Limpio:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccionD.limpio}}</label>
+                </div>
+                <hr>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>Escoge tu fecha una fecha
+                            nueva</strong></label>
+                    <select class="form-select" name="fechaRecoleccion" id="fechaRecoleccion" onchange="seleccionado()">
+                        <option selected disabled value="">Fechas...</option>
+                        <option value="{{recoleccionD.fecha1}}">{{recoleccionD.fecha1}}</option>
+                        <option value="{{recoleccionD.fecha2}}">{{recoleccionD.fecha2}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>Horario</strong></label>
+                    <textarea type="text" class="form-control" id="horario" name="horario" rows="1"
+                        readonly></textarea><br>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-warning" type="submit">Editar Solicitud</button>
+                </div>
+            </form>
+        </div>
+         <div class="card-footer text-muted text-center">
+            <a href="/links/comentsRecolector/{{recoleccionD.idRecolector}}" style="text-decoration: none; color:rgb(139, 139, 139)">Comentarios</a>
+        </div>
+    </div>
+</div>
+<script>
+    function seleccionado() {
+        var f1 = document.getElementById("fecha1").value;
+        var f2 = document.getElementById("fecha2").value;
+        var h1 = document.getElementById("horario1").value;
+        var h2 = document.getElementById("horario2").value;
+        var x = document.getElementById("fechaRecoleccion").value;
+        if (x === f1) {
+            document.getElementById("horario").innerHTML = h1;
+        } else {
+            document.getElementById("horario").innerHTML = h2;
+        }
+    }
+    function crearPerfilReciclador() {
+        var fechaRecoleccion = document.getElementById("fechaRecoleccion").value;
+        if (fechaRecoleccion === "") {
+            swal.fire({
+                title: "Selección errónea",
+                text: "Escoge la fecha que podrias recoger",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+    }
+
+</script>

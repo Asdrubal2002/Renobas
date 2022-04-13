@@ -1,0 +1,71 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaUsers">Id Solicitud</a></th>
+                    <th><a style="color:white" href="/links/listaRecicladores">Id Reciclador</a></th>
+                    <th><a style="color:white" href="/links/listaRecolectores">Id Recolector</a></th>
+                    <th>Horario</th>
+                    <th>fecha</th>
+                    <th>material</th>
+                    <th>nombre Recibe</th>
+                    <th>cantidad</th>
+                    <th>precio</th>
+                    <th>estado</th>
+                    <th>toxico/clasificado/limpio</th>
+                    <th>Administrador de la recoleccion</th>
+                    <th>Administrador telefono</th>
+                    <th>dirección</th>
+                    <th>nombre Del lugar de los recolectores</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                {{#each pendientes}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{idSolicitud}}</td>
+                    <td>{{idReciclador}}</td>
+                    <td>{{idRecolector}}</td>
+                    <td>{{horario}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{material}}</td>
+                    <td>{{nombreRecibe}}</td>
+                    <td>{{cantidad}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{estado}}</td>
+                    <td>{{toxico}}/{{clasificacion}}/{{limpio}}</td>
+                    <td>{{administradorRecoleccion}}</td>
+                    <td>{{administradorTelefono}}</td>
+                    <td>{{direccion}}</td>
+                    <td>{{nombreLugarRecolectores}}</td>
+                   
+                </tr>
+                {{else}}
+                <h4>No hay Recolecciones registrados</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+     $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿Eliminaras todas las recolecciones ya clasificadas?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

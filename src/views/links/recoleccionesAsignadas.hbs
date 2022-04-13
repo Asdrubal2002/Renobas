@@ -1,0 +1,113 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="/profile" style="text-decoration:none" ;><label class="fas fa-home"></label></a>
+    </div>
+</div>
+<div class="container p-4">
+    <input class="datosOcultos" id="pendiente" value="{{nombreRecibe}}">
+    <div class="container p-3">
+        <div class="row">
+            {{#each recolectaAceptadas}}
+
+            <div class="card">
+                <div class="card-header">
+                    <strong>Detalles de recolección de {{material}}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="container px-4">
+                        <div class="row gx-5">
+                            <div class="col">
+                                <div class="p-3 ">
+                                    <p class="card-text">Tipo de recolección: <strong>{{tipoDeRecoleccion}}</strong></p>
+                                    <p class="card-text">Cantidad: <strong>{{cantidad}}</strong></p>
+                                    <p class="card-text">Precio: <strong>{{precio}}</strong></p>
+                                    <p class="card-text">Clasificados: <strong>{{clasificacion}}</strong></p>
+                                    <p class="card-text">toxico: <strong>{{toxico}}</strong></p>
+                                    <p class="card-text">limpio: <strong>{{limpio}}</strong></p>
+                                    <p class="card-text">Estado: <strong>{{estado}}</strong></p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3">
+                                    <p class="card-text">Lugar de recolección:
+                                        <strong>{{nombreLugarRecoleccion}}</strong>
+                                    </p>
+                                    <p class="card-text">dirección: <strong>{{direccion}}</strong></p>
+                                    <p class="card-text" style="color: rgb(194, 17, 17);">Encargado de entrega:
+                                        <strong>{{nombreEntrega}}</strong></p>
+                                    <p class="card-text">Administrador: <strong>{{administradorRecolecta}}</strong></p>
+                                    <p class="card-text">Teléfono: <strong>{{administradorTelefono}}</strong></p>
+                                    <p class="card-text">Fecha escogida de entrega: <strong>{{fecha}}</strong></p>
+                                    <p class="card-text">Hora de entrega: <strong>{{horario}}</strong></p>
+                                </div>
+                            </div>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                Escribe el nombre de la persona que ira por los materiales y los recibira. En este momente la persona encardas es: <strong>{{nombreRecibe}}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="/links/encargado/{{id}}" method="POST">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="nombreEncargado" id="nombreEncargado"
+                                        placeholder="Nombre del encargado de la recolección {{nombreRecibe}}">
+                                    <span class="input-group-text">
+                                        <button type="submit" class="btn btn-secondary">Encargar</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container px-6">
+                        <div class="row gx-5">
+                            <div class="col">
+                                <div class="p-3">
+                                    <div class="container px-4">
+                                        <div class="row gx-5">
+                                            <div class="col">
+                                                <div>
+                                                    <form action="/links/calificacionRecolector/{{id}}"
+                                                        class="calificacionReciclador">
+                                                        <button type="submit" class="btn btn-success">Calificar a {{nombreLugarRecoleccion}}</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center text-dark">
+                    <p>No tienes recolecciones pendientes para recoger</p>
+                    <a href="/links/recolectas"><button type="button" class="btn btn-primary">Solicitudes /
+                            Recolecciones</button></a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <script>
+        $('.calificacionReciclador').submit(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Confirmación',
+                text: "¿Ya recogiste la recolección?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Si',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+
+    </script>

@@ -1,0 +1,66 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaUsers">IdUsuario</a></th>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>telefono</th>
+                    <th>ciudad</th>
+                    <th>identificación</th>
+                    <th>edad</th>
+                    <th>departamento</th>
+                    <th>dirección</th>
+                    <th>Empresa</th>
+                    <th>Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usuariosRecicladores}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{idUsuario}}</td>
+                    <td>{{nombre}}</td>
+                    <td>{{apellido}}</td>
+                    <td>{{telefono}}</td>
+                    <td>{{ciudad}}</td>
+                    <td>{{identificacion}}</td>
+                    <td>{{edad}}</td>
+                    <td>{{departamento}}</td>
+                    <td>{{direccion}}</td>
+                    <td>{{nombreLugar}}</td>
+                    <td>
+                        <form action="/links/deleteUserReciclador/{{id}}" class="ActionForm">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {{else}}
+                <h4>No hay Usuarios registrados</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres Eliminar este perfil",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

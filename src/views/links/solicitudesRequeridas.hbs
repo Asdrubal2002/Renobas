@@ -1,0 +1,90 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label
+                class="fas fa-arrow-left"></label></a>
+    </div>
+</div>
+<div class="container p-3">
+    <div class="row">
+        {{#each TodasSolicitudes}}
+        <div class="card">
+            <div class="card-header">
+                Solicitud recolección de {{material}} <strong>{{estado}}</strong>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Empresa o institución: <strong>{{nombreLugar}} ({{ponderadoReciclador}}<estrella
+                            id="demo" style="color: #ffc107;">★</estrella>)</strong></h5>
+                <p class="card-text">Fecha disponibilidad: <strong>{{fechaRecoleccion}}</strong></p>
+                <p class="card-text">Hora disponibilidad: <strong>{{horario}}</strong></p>
+
+                <p class="card-text">precio sugerido: <strong>{{precioSugerido}}</strong></p>
+                <p class="card-text">Comentario: <strong>{{comentario}}</strong></p>
+                <p class="card-text"><strong></strong></p>
+
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <form action="/links/aceptar/{{id}}" class="aceptar">
+                        <a><button type="submit" class="btn btn-warning">Aceptar</button></a>
+                    </form>
+                    <form action="/links/rechazar/{{id}}" class="rechazar">
+                        <a><button type="submit" class="btn btn-danger">Rechazar</button></a>
+                    </form>
+                </div>
+
+
+
+
+            </div>
+            <div class="card-footer text-muted text-center">
+                <a href="/links/comentsReciclador/{{idReciclador}}"
+                    style="text-decoration: none; color:rgb(139, 139, 139)">Comentarios</a>
+            </div>
+        </div>
+
+
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center text-dark">
+                <p>No tienes recolecciones pendientes</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    $('.aceptar').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿Quieres aceptar esta solicitud?",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#239B56',
+            cancelButtonText: 'No, Aceptar',
+            confirmButtonText: 'Aceptar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+
+    $('.rechazar').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿Quieres rechazar esta solicitud?",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#CB4335',
+            cancelButtonText: 'No, Rechazar',
+            confirmButtonText: 'Rechazar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

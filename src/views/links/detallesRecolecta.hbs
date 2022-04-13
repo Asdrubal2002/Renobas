@@ -1,0 +1,155 @@
+<div class="containerBoton">
+    <div class="btn-mas">
+        <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label
+                class="fas fa-arrow-left"></label></a>
+    </div>
+</div>
+<input class="datosOcultos" id="fecha1" value="{{recoleccion.fecha1}}">
+<input class="datosOcultos" id="fecha2" value="{{recoleccion.fecha2}}">
+
+<input class="datosOcultos" id="horario1" value="{{recoleccion.horario1}}">
+<input class="datosOcultos" id="horario2" value="{{recoleccion.horario2}}">
+
+<input class="mult datosOcultos" id="mult" value={{recoleccion.ponderado}}>
+
+<div class="container p-4">
+    <div class="border bg-light">
+        <div class="card-header">
+            <h3>{{recoleccion.barrio}} - {{recoleccion.materiales}} </h3>
+        </div>
+        <div class="p-4">
+            <form action="/links/obtenerRecolecta/{{recoleccion.id}}" method="POST" class="row g-3"
+                onsubmit="return crearPerfilReciclador();">
+                <div class="col-md-6">
+                    <label for="validationDefault01" class="form-label"><strong>Fecha 1 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.fecha1}}</label>
+                </div>
+              
+                <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Fecha 2 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.fecha2}}</label>
+                </div>
+
+                  <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Hora 1 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.horario1}}</label>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="validationDefault02" class="form-label"><strong>Hora 2 de entrega</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.horario2}}</label>
+                </div>
+                
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Cantidad:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.cantidad}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Estado:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.estado}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Precio:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.precio}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Clasificado:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.clasificado}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Toxico:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.toxico}}</label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault02" class="form-label"><strong>Limpio:</strong></label>
+                    <label for="validationDefault01" class="form-label">{{recoleccion.limpio}}</label>
+                </div>
+                <hr>
+                <div class="col-md-12  text-center">
+                    <label for="validationDefault04" class="form-label">Clasificación</label>
+                    <p id="demo" style="color: #ffc107;">Sin clasificación</p>
+                </div>
+                <hr>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>Escoge tu fecha</strong></label>
+                    <select class="form-select" name="fechaRecoleccion" id="fechaRecoleccion" onchange="seleccionado()">
+                        <option selected disabled value="">Fechas...</option>
+                        <option value="{{recoleccion.fecha1}}">{{recoleccion.fecha1}}</option>
+                        <option value="{{recoleccion.fecha2}}">{{recoleccion.fecha2}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>Horario</strong></label>
+                    <textarea type="text" class="form-control" id="horario" name="horario" rows="1"
+                        readonly></textarea><br>
+                </div>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>¡ATENCIÓN!</strong> Si no tienes precio sugerido deja los campos vacios.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>Precio Sugerido</strong></label>
+                    <input type="number" class="form-control" id="precioSugerido" name="precioSugerido"
+                        placeholder="30000">
+                </div>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label"><strong>¿Por que sugieres ese
+                            precio?</strong></label>
+                    <textarea class="form-control" id="comentario" name="comentario" rows="1"
+                        placeholder="Precio del material por kilo"></textarea>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-warning" type="submit">Enviar Solicitud</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <a href="/links/comentsRecolector/{{recoleccion.idRecolector}}" style="text-decoration: none; color:rgb(139, 139, 139)">Comentarios</a>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = estreella;
+    function seleccionado() {
+        var f1 = document.getElementById("fecha1").value;
+        var f2 = document.getElementById("fecha2").value;
+        var h1 = document.getElementById("horario1").value;
+        var h2 = document.getElementById("horario2").value;
+        var x = document.getElementById("fechaRecoleccion").value;
+        if (x === f1) {
+            document.getElementById("horario").innerHTML = h1;
+        } else {
+            document.getElementById("horario").innerHTML = h2;
+        }
+    }
+    function crearPerfilReciclador() {
+        var fechaRecoleccion = document.getElementById("fechaRecoleccion").value;
+        if (fechaRecoleccion === "") {
+            swal.fire({
+                title: "Selección errónea",
+                text: "Escoge la fecha que podrias recoger",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+    }
+    function estreella() {
+        var start = document.getElementById("mult").value;
+        if (start >= 5 || start == 0) {
+            document.getElementById("demo").innerHTML = "★★★★★";
+        }
+        else if (start < 5 && start >= 4) {
+            document.getElementById("demo").innerHTML = "★★★★";
+        }
+        else if (start < 4 && start >= 3) {
+            document.getElementById("demo").innerHTML = "★★★";
+        }
+        else if (start < 3 && start >= 2) {
+            document.getElementById("demo").innerHTML = "★★";
+        }
+        else if (start < 2 && start >= 1) {
+            document.getElementById("demo").innerHTML = "★";
+        }
+    }
+</script>

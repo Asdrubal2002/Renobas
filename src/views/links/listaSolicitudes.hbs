@@ -1,0 +1,59 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaRecicladores">Id Reciclador</a></th>
+                    <th><a style="color:white" href="/links/listaRecolectas">Id Recolecta</a></th>
+                    <th>nombre lugar</th>
+                    <th>fecha</th>
+                    <th>material</th>
+                    <th>horario</th>
+                    <th>estado</th>
+                    <th>Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each solicitudes}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{idReciclador}}</td>
+                    <td>{{idRecolecta}}</td>
+                    <td>{{nombreLugar}}</td>
+                    <td>{{fechaRecoleccion}}</td>
+                    <td>{{material}}</td>
+                    <td>{{horario}}</td>
+                    <td>{{estado}}</td>
+                    <td>  
+                        <form action="/links/eliminarSolicitud/{{id}}" class="ActionForm">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </form></td>
+                </tr>
+                {{else}}
+                <h4>No hay Solicitudes registrados</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('.ActionForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Confirmación',
+            text: "¿De verdad quieres Eliminar esta recolección",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#c51162',
+            cancelButtonText: 'No, Eliminar',
+            confirmButtonText: 'Si, Eliminar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>

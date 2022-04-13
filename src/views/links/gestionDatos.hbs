@@ -1,0 +1,180 @@
+<div class="container p-4">
+    <div class="row gx-12">
+        <div class="col">
+            <div class="p-3 border bg-light">
+                <input class="datosOcultos" id="status" value="{{datoadmin.nivel}}">
+                <h1>Administrador {{datoadmin.nombre}} {{datoadmin.apellido}}</h1>
+                <p>{{datoadmin.identificacion}}</p>
+                <div class="container">
+                    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div class="col">
+                            <div class="p-3">
+                                <a href="/links/listaUsers"><button type="button" class="btn btn-info">Gestion de
+                                        usuarios</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3">
+                                <a href="/links/listaRecolectores"><button type="button" class="btn btn-info">Gestion de
+                                        recolectores</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3">
+                                <a href="/links/listaRecicladores"><button type="button" class="btn btn-info">Gestion de
+                                        recicladores</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3">
+                                <a href="/links/listaRecolectas"><button type="button" class="btn btn-info">Gestion de
+                                        recolectas</button></a>
+                            </div>
+                        </div>
+                        <div class="col datosOcultos" id="lista">
+                            <div class="p-3">
+                                <a href="/links/listaAdmins"><button type="button" class="btn btn-info">Gestion de
+                                        administradores</button></a>
+                            </div>
+                        </div>
+                        <div class="col datosOcultos" id="añadir">
+                            <div class="p-3">
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Añadir administradores
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="container">
+                    <div class="container overflow-hidden">
+                        <div class="row gx-5">
+                            <div class="col">
+                                <div class="p-3"> <a href="/links/listaPendientes"><button type="button"
+                                            class="btn btn-dark">Gestion de
+                                            recolectas pendientes para las empresas o instituciones</button></a></div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3"><a href="/links/listaAsignadas"><button type="button"
+                                            class="btn btn-dark">Gestion de
+                                            recolectas asignadas para aprovechadoras o recolectores</button></a></div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3"> <a href="/links/listaSolicitudes"><button type="button"
+                                            class="btn btn-dark">Gestion de
+                                            Solicitudes de recolectas pendientes aprovechadoras/empresas</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container">
+                    <div class="container overflow-hidden">
+                        <div class="row gx-5">
+                            <div class="col">
+                                <div class="p-3"> <a href="/links/listaComentsRecolectores"><button type="button"
+                                            class="btn btn-dark">Comentarios de recolectores</button></a></div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3"><a href="/links/listaComentsRecicladores"><button type="button"
+                                            class="btn btn-dark">Comentarios de recicladores</button></a></div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3"><a href="/links/listaRealizadasRecolectores"><button type="button"
+                                            class="btn btn-dark">Recolecciones Realizadas Recolectores</button></a></div>
+                            </div>
+                             <div class="col">
+                                <div class="p-3"><a href="/links/listaRealizadasRecicladores"><button type="button"
+                                            class="btn btn-dark">Recolecciones Realizadas Recilcladores</button></a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/links/addAmin" method="POST" onsubmit="return crearAdministrador();">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Añadir Administradores</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Numero de cuenta</label>
+                        <input type="number" name="idUser" class="form-control" id="idUser"
+                            placeholder="Digita su numero de cuenta">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" id="nombre"
+                            placeholder="Digita su nombre">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Apellido</label>
+                        <input type="text" name="apellido" class="form-control" id="apellido"
+                            placeholder="Digita su apellido">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Identificación</label>
+                        <input type="text" name="identificacion" class="form-control" id="identificacion"
+                            placeholder="Digita su identificación">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationDefault04" class="form-label">Tipo</label>
+                        <select class="form-select" name="nivel" id="nivel">
+                            <option selected disabled value="">Puede añadir otras personas</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="sudmit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = estaodos;
+    function estaodos() {
+        var status = document.getElementById("status").value;
+        var addA = document.getElementById("añadir");
+        var lookA = document.getElementById("lista");
+        if (status == 1) {
+            addA.style.display = 'block';
+            lookA.style.display = 'block';
+        }
+    }
+    function crearAdministrador() {
+        var id, nombre, apellido, identificacion, status;
+        id = document.getElementById("idUser").value;
+        nombre = document.getElementById("nombre").value;
+        apellido = document.getElementById("apellido").value;
+        identificacion = document.getElementById("identificacion").value;
+        nivel = document.getElementById("nivel").value;
+
+        console.log(nivel)
+
+        if (id === "" || nombre === "" || apellido === "" || identificacion === "" || nivel === "") {
+            swal.fire({
+                title: "Creación errónea",
+                text: "Todos los campos son obligatorios",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+    }
+</script>

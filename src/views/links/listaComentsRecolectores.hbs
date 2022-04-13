@@ -1,0 +1,24 @@
+<div class="m-3 p-2">
+    <div id="div1">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th><a style="color:white" href="/links/listaRecolectores">IdRecolector</a></th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each coments}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{identificacion}}</td>
+                    <td>{{comentario}}</td>
+                </tr>
+                {{else}}
+                <h4>No Comentarios Aún</h4>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

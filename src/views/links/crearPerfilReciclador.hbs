@@ -1,0 +1,160 @@
+<div class="containerBoton">
+  <div class="btn-mas">
+      <a href="javascript: history.go(-1)" style="text-decoration:none" ;><label class="fas fa-arrow-left"></label></a>
+  </div>
+</div>
+<div class="container p-4 border bg-light">
+    <form action="/links/reciclador" method="POST" class="row g-3" onsubmit="return crearPerfilReciclador();">
+        <h3>Información personal reciclador</h3>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Se <strong>registra</strong> la persona encargada de la gestión de residuos del lugar.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Digita tu nombre">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Apellido</label>
+            <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Digita tu apellido">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Telefono</label>
+            <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Digita tu teléfono">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault03" class="form-label">Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Digita tu ciudad">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault03" class="form-label">Identificación</label>
+             <input type="number" name="identificacion" class="form-control" id="identificacion" placeholder="Digita tu numero de identificación">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault03" class="form-label">Edad</label>
+            <input type="number" name="edad" class="form-control" id="edad" placeholder="Digita tu edad">
+        </div>
+        <div class="col-md-12">
+            <label for="validationDefault04" class="form-label">Departamento</label>
+            <select class="form-select" name="departamento" id="departamento">
+                <option selected disabled value="">Escoge...</option>
+                <option>Amazonas</option>
+                <option>Antioquía</option>
+                <option>Arauca</option>
+                <option>Atlántico</option>
+                <option>Bolivar</option>
+                <option>Boyacá</option>
+                <option>Caldas</option>
+                <option>Caquetá</option>
+                <option>Casanare</option>
+                <option>Cauca</option>
+                <option>Cesar</option>
+                <option>Chocó</option>
+                <option>Córdoba</option>
+                <option>Cundinamarca</option>
+                <option>Guainía</option>
+                <option>Guaviare</option>
+                <option>La Guajira</option>
+                <option>Magdalena</option>
+                <option>Meta</option>
+                <option>Nariño</option>
+                <option>Norte de Santander</option>
+                <option>Putumayo</option>
+                <option>Quindio</option>
+                <option>Risaralda</option>
+                <option>San Andrés y Providencia</option>
+                <option>Santander</option>
+                <option>Sucre</option>
+                <option>Tolima</option>
+                <option>Valle del Cauca</option>
+                <option>Vaupés</option>
+                <option>Vichada</option>
+            </select>
+        </div>
+        <hr>
+        <h3>Información Institucional</h3>
+       
+        <div class="col-md-4">
+            <label for="validationDefault05" class="form-label">Dirección</label>
+            <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Digita tu localidad">
+        </div>
+         <div class="col-md-4">
+            <label for="validationDefault05" class="form-label">Barrio</label>
+            <input type="text" name="barrio" class="form-control" id="barrio" placeholder="Digita tu Barrio">
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault05" class="form-label">Nombre Lugar</label>
+            <input type="text" name="nombreLugar" class="form-control" id="nombreLugar" placeholder="¿Como se llama el lugar?">
+        </div>
+       
+
+
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="test">
+                <label class="form-check-label" for="invalidCheck2">
+                    Estoy deacuerdo con el tratamiento de datos.
+                </label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Crear perfil</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function crearPerfilReciclador() {
+        var nombre, apellido, telefono, ciudad, identificacion, edad, departamento, direccion, nombreLugar, barrio;
+        nombre = document.getElementById("nombre").value;
+        apellido = document.getElementById("apellido").value;
+        telefono = document.getElementById("telefono").value;
+        ciudad = document.getElementById("ciudad").value;
+        identificacion = document.getElementById("identificacion").value;
+        edad = document.getElementById("edad").value;
+        departamento = document.getElementById("departamento").value;
+        direccion = document.getElementById("direccion").value;
+        nombreLugar = document.getElementById("nombreLugar").value;
+        barrio = document.getElementById("barrio").value;
+
+        var isChecked = document.getElementById('test').checked;
+
+        if (nombre === "" || apellido === "" || telefono === "" || ciudad === "" || identificacion === "" || edad === "" ||
+            departamento === "" || direccion === "" || nombreLugar === "" ||  barrio === "") {
+            swal.fire({
+                title: "Creación errónea",
+                text: "Todos los campos son obligatorios",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+        else if (!isChecked) {
+            swal.fire({
+                title: "Error",
+                text: 'No Aceptaste el tratamiento de datos',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        } 
+        else if(telefono.length > 10 || telefono.length < 10){
+            swal.fire({
+                title: "Error",
+                text: 'Vuelve a escribir tú número',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+        else if(identificacion.length > 10 || identificacion.length < 10){
+            swal.fire({
+                title: "Error",
+                text: 'Vuelve a escribir tú documento',
+                timer: 3000,
+                showConfirmButton: false
+            })
+            return false;
+        }
+    }
+</script>
