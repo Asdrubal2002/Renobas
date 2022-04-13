@@ -1,4 +1,4 @@
-# Aplicacion
+# Renobas
 
 Las organizaciones, casas, instituciones publican su reciclaje, las aprovechadoras o recicladores, los observan y se contactan mediante la aplicación, enviándoles una solicitud para obtener el material de manera fácil, segura y efectiva. Es decisión de los administradores de las recolecciones, aceptar o rechazar según los comentarios que otras personas les hayan publicado a la persona que quiere el material.
 
